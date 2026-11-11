@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" role="img" aria-label="LAPTOP category illustration">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf3ef"/><stop offset="1" stop-color="#e2eae5"/></linearGradient><linearGradient id="item" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#526f62"/><stop offset="1" stop-color="#263e35"/></linearGradient></defs>
+<rect width="400" height="320" rx="24" fill="url(#bg)"/><circle cx="320" cy="70" r="78" fill="#d4e1d8"/><circle cx="76" cy="270" r="82" fill="#dce7df"/>
+<g fill="url(#item)" stroke="#20372e" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"><path d="M112 76 Q112 66 124 66 H276 Q288 66 288 78 V190 H112 Z"/><path d="M88 202 H312 L330 224 Q332 232 320 232 H80 Q68 232 70 224 Z"/></g>
+<text x="28" y="34" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="2" fill="#60766a">COMPUTING</text>
+<text x="28" y="294" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="1" fill="#31483d">LAPTOP</text>
+</svg>
