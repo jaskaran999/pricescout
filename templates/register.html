@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+{% block title %}Create account | PriceScout{% endblock %}
+
+{% block content %}
+<div class="auth-card mx-auto p-4 rounded-4 shadow-sm">
+    <div class="text-center mb-4">
+        <h1 class="h3 fw-bold">Create your account</h1>
+        <p class="text-secondary small">
+            Start comparing prices and finding better deals.
+        </p>
+    </div>
+
+    <form method="post">
+        <label class="form-label">Full name</label>
+        <input class="form-control mb-3"
+               name="name" placeholder="Your name" required>
+
+        <label class="form-label">Email address</label>
+        <input class="form-control mb-3"
+               type="email" name="email"
+               placeholder="you@example.com" required>
+
+        <label class="form-label">Password</label>
+        <input class="form-control mb-4"
+               type="password" name="password"
+               minlength="8" placeholder="At least 8 characters"
+               required>
+
+        <button class="btn btn-dark w-100">
+            Create account
+        </button>
+    </form>
+
+    <div class="text-center text-secondary small my-3">
+        OR CONTINUE WITH
+    </div>
+
+    <a class="btn btn-outline-dark w-100"
+       href="{{ url_for('google_login') }}">
+        Continue with Google
+    </a>
+
+    <p class="small text-center mt-4 mb-0">
+        Already have an account?
+        <a href="{{ url_for('login') }}">Sign in</a>
+    </p>
+</div>
+{% endblock %}

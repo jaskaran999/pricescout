@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}Add product · PriceScout{% endblock %}
+{% block content %}
+<div class="auth-card mx-auto p-4 rounded-4 shadow-sm">
+<h1 class="h3">Add a product price</h1>
+<p class="text-secondary">Paste a publicly accessible product page URL. PriceScout looks for Product/Offer structured data.</p>
+<form method="post">
+<label class="form-label">Product URL</label>
+<input class="form-control mb-3" type="url" name="url" placeholder="https://store.example/product" required>
+<button class="btn btn-dark w-100">Fetch and save price</button>
+</form>
+<p class="small text-secondary mt-3 mb-0">Only submit pages you are permitted to access. Some stores block automated requests or do not publish machine-readable prices.</p>
+</div>{% endblock %}

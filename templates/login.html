@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block title %}Sign in | PriceScout{% endblock %}
+
+{% block content %}
+<div class="auth-card mx-auto p-4 rounded-4 shadow-sm">
+    <div class="text-center mb-4">
+        <h1 class="h3 fw-bold">Welcome back</h1>
+        <p class="text-secondary small">
+            Sign in to continue to PriceScout.
+        </p>
+    </div>
+
+    <form method="post">
+        <label class="form-label">Email address</label>
+        <input class="form-control mb-3"
+               type="email" name="email"
+               placeholder="you@example.com" required>
+
+        <label class="form-label">Password</label>
+        <input class="form-control mb-4"
+               type="password" name="password"
+               placeholder="Enter your password" required>
+
+        <button class="btn btn-dark w-100">
+            Sign in
+        </button>
+    </form>
+
+    <div class="text-center text-secondary small my-3">
+        OR CONTINUE WITH
+    </div>
+
+    <a class="btn btn-outline-dark w-100"
+       href="{{ url_for('google_login') }}">
+        Continue with Google
+    </a>
+
+    <p class="small text-center mt-4 mb-0">
+        Don't have an account?
+        <a href="{{ url_for('register') }}">Create one</a>
+    </p>
+</div>
+{% endblock %}
