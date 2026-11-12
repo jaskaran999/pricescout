@@ -1,0 +1,153 @@
+
+{% extends "base.html" %}
+{% block title %}PriceScout | Compare Product Prices{% endblock %}
+
+{% block content %}
+
+<section class="hero mb-4">
+    <span class="eyebrow">SMARTER SHOPPING</span>
+    <h1>Find the right product.<br>Pay the right price.</h1>
+    <p>Compare available offers from popular Indian retailers.</p>
+
+    <form method="GET" class="search-bar">
+        <input name="q" value="{{ query }}"
+               placeholder="Search phones, laptops, headphones..."
+               class="form-control">
+        <button class="btn btn-dark">Search</button>
+    </form>
+</section>
+
+<div class="d-flex flex-wrap gap-2 mb-4">
+    {% for category in categories %}
+    <a class="category-chip {% if selected_category == category %}active{% endif %}"
+       href="{{ url_for('index', category=category) }}"
+       {% if selected_category == category %}aria-current="true"{% endif %}>
+        {{ category }}
+    </a>
+    {% endfor %}
+</div>
+
+<form method="GET" class="filter-panel mb-4">
+    <input type="hidden" name="q" value="{{ query }}">
+
+    <select name="category" class="form-select">
+        <option value="">All categories</option>
+        {% for category in categories %}
+        <option value="{{ category }}"
+            {% if selected_category == category %}selected{% endif %}>
+            {{ category }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <select name="store" class="form-select">
+        <option value="">All retailers</option>
+        {% for store in stores %}
+        <option value="{{ store }}"
+            {% if selected_store == store %}selected{% endif %}>
+            {{ store }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <select name="sort" class="form-select">
+        <option value="relevance">Default order</option>
+        <option value="price_low"
+            {% if sort_by == 'price_low' %}selected{% endif %}>
+            Lowest price
+        </option>
+        <option value="price_high"
+            {% if sort_by == 'price_high' %}selected{% endif %}>
+            Highest price
+        </option>
+        <option value="savings"
+            {% if sort_by == 'savings' %}selected{% endif %}>
+            Highest savings
+        </option>
+    </select>
+
+    <button class="btn btn-dark">Apply filters</button>
+</form>
+
+<div class="d-flex justify-content-between mb-3">
+    <div>
+        <h2 class="h4 fw-bold mb-1">Explore products</h2>
+        <p class="text-secondary small">
+            {{ comparisons|length }} products found
+        </p>
+    </div>
+</div>
+
+<div class="row g-3">
+
+{% for product in comparisons %}
+
+<div class="col-sm-6 col-lg-4">
+    <div class="product-card h-100">
+
+        <a href="{{ url_for('product_detail',
+                            offer_id=product.cheapest.id) }}"
+           class="product-image">
+
+            <img
+                src="{{ product.image if product.image else url_for('static', filename='images/categories/' ~ product.image_fallback) }}"
+                alt="{{ product.name }} product image"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+                onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/categories/other.svg') }}';">
+
+
+        </a>
+
+        <div class="product-info">
+
+            <span class="product-category">
+                {{ product.category }}
+            </span>
+
+            <h3>
+                <a href="{{ url_for('product_detail',
+                                    offer_id=product.cheapest.id) }}">
+                    {{ product.name }}
+                </a>
+            </h3>
+
+            <div class="best-price-label">
+                BEST AVAILABLE PRICE
+            </div>
+
+            <div class="product-price">
+                ₹{{ "{:,.0f}".format(product.cheapest.price) }}
+            </div>
+
+            <div class="small text-secondary mb-3">
+                {{ product.offers|length }} retailer offers
+            </div>
+
+            <a href="{{ url_for('product_detail',
+                                offer_id=product.cheapest.id) }}"
+               class="btn btn-dark w-100">
+                Compare prices
+            </a>
+
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+<div class="col-12">
+    <div class="empty-state">
+        <h3>No products found</h3>
+        <p>Try changing your search or filters.</p>
+        <a href="{{ url_for('index') }}" class="btn btn-dark">
+            Clear filters
+        </a>
+    </div>
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
